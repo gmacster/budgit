@@ -1,1 +1,10 @@
-env/
+
+# virtualenv stuff
+env
+
+# python cruft
+*.pyc
+__pycache__
+
+# sqlite
+*.sqlite3
