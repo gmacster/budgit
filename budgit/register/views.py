@@ -2,43 +2,39 @@
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from budgit.register.models import (Account,
-                                    Category,
-                                    Payee,
-                                    Transaction)
-from budgit.register.serializers import (UserSerializer,
-                                         GroupSerializer,
-                                         AccountSerializer,
-                                         CategorySerializer,
-                                         PayeeSerializer,
-                                         TransactionSerializer)
+from budgit.register import models, serializers
 
 class UserViewSet(viewsets.ModelViewSet):
     """View for the User model."""
     queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+    serializer_class = serializers.UserSerializer
 
 class GroupViewSet(viewsets.ModelViewSet):
     """View for the User model."""
     queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    serializer_class = serializers.GroupSerializer
 
 class AccountViewSet(viewsets.ModelViewSet):
     """View for the User model."""
-    queryset = Account.objects.all()
-    serializer_class = AccountSerializer
+    queryset = models.Account.objects.all()
+    serializer_class = serializers.AccountSerializer
+
+class MasterCategoryViewSet(viewsets.ModelViewSet):
+    """View for the MasterCategory model."""
+    queryset = models.MasterCategory.objects.all()
+    serializer_class = serializers.MasterCategorySerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """View for the Category model."""
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategorySerializer
 
 class PayeeViewSet(viewsets.ModelViewSet):
     """View for the Payee model."""
-    queryset = Payee.objects.all()
-    serializer_class = PayeeSerializer
+    queryset = models.Payee.objects.all()
+    serializer_class = serializers.PayeeSerializer
 
 class TransactionViewSet(viewsets.ModelViewSet):
     """View for the Transaction model."""
-    queryset = Transaction.objects.all()
-    serializer_class = TransactionSerializer
+    queryset = models.Transaction.objects.all()
+    serializer_class = serializers.TransactionSerializer

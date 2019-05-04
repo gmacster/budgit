@@ -7,9 +7,14 @@ class Account(models.Model):
     name = models.CharField(max_length=50, unique=True)
     note = models.CharField(max_length=200, blank=True)
 
+class MasterCategory(models.Model):
+    """Represents a categorization for categories."""
+    name = models.CharField(max_length=50, unique=True)
+
 class Category(models.Model):
     """Represents a categorization for transactions."""
     name = models.CharField(max_length=50, unique=True)
+    master_category = models.ForeignKey(MasterCategory, on_delete=models.SET_NULL, null=True)
 
 class Payee(models.Model):
     """Represents an entity to/from which transactions are sent/received."""

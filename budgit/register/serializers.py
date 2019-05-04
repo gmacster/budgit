@@ -2,10 +2,7 @@
 
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from budgit.register.models import (Account,
-                                    Category,
-                                    Payee,
-                                    Transaction)
+from budgit.register import models
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for the User model."""
@@ -22,23 +19,29 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class AccountSerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for the Account model."""
     class Meta:
-        model = Account
+        model = models.Account
+        fields = '__all__'
+
+class MasterCategorySerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer for the MasterCategory model."""
+    class Meta:
+        model = models.MasterCategory
         fields = '__all__'
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for the Category model."""
     class Meta:
-        model = Category
+        model = models.Category
         fields = '__all__'
 
 class PayeeSerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for the Payee model."""
     class Meta:
-        model = Payee
+        model = models.Payee
         fields = '__all__'
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for the Transaction model."""
     class Meta:
-        model = Transaction
+        model = models.Transaction
         fields = '__all__'
